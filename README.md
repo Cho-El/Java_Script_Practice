@@ -1,2 +1,2 @@
 # Java_Script_Practice
- 45645
+ 자바스크립트 연습
