@@ -299,11 +299,11 @@ str.indexOf('a')
 if(str.indexOf('a') > -1){ // 반환 값이 0이 되므로 if문이 실행되지 않을 수 있으므로 기준은 -1로
     console.log('a가 포함된 문장입니다.')
 }
-str.slice(n,m) // n부터 m-1 인덱스 까지 반환, 값이 한개 있는경우 그 숫자부터 끝까지
-str.substring(n,m) // n과 m-1 인덱스의 문자열 반환 하며, 순서를 바꿔도 같은 방식으로 동작, 음수는 0으로 인식
-str.substr(n,m) // n인덱스부터 m개 반환
-str.trim() // 앞 뒤 공백 제거
-str.repeat(n) // 문자열을 n번 반복
+// str.slice(n,m) // n부터 m-1 인덱스 까지 반환, 값이 한개 있는경우 그 숫자부터 끝까지
+// str.substring(n,m) // n과 m-1 인덱스의 문자열 반환 하며, 순서를 바꿔도 같은 방식으로 동작, 음수는 0으로 인식
+// str.substr(n,m) // n인덱스부터 m개 반환
+// str.trim() // 앞 뒤 공백 제거
+// str.repeat(n) // 문자열을 n번 반복
 
 function hasCola(str){
     if(str.indexOf('콜라') > -1){
@@ -320,4 +320,20 @@ let arr3 = [1,2,3,4,5]
 let result2 = arr3.splice(1,2)
 console.log(arr3)
 console.log(result2)
-//arr.slice(n,m) -> n부터 m까지 반환 
+//arr.slice(n,m) -> n부터 m까지 반환 파이썬의 slice랑 같다
+//arr.concat(arr2, arr3) -> arr에 arr2와 arr3를 합쳐서 새배열로 반환
+//arr.forEach(fn) : 배열 반복
+let arr4 = ['mike', 'tom','jane']
+arr.forEach((name, index) => {// 반복문
+    console.log(`${index}, ${name}`)
+})
+//arr.indexOf(n,m) // index m부터 n을 탐색
+//arr.lastIndexOf(n) // 마지막으로 n이 발견되는 index를 반환
+//arr.includes(n) // n을 포함하고 있는지를 확인 false나 true를 반환
+//arr.find(fn) // 첫번 째 true값을 반환하고 없는 경우 undefined를 반환
+//arr.findIndex(fn) // 
+let arr5 = [1,2,3,4,5]
+const result = arr.find((item) => {
+    return item % 2 === 0 // 이 값이 트루일 때 멈춘다.
+})
+console.log(result)
