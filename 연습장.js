@@ -287,3 +287,37 @@ let x = Number('x')
 console.log(x)
 console.log(isNaN(x))
 // parseInt() -> 문자열을 숫자로 반환해주는데, 문자랑 혼용되어 있어도 동작을 한다.
+
+// 문자열 메소드 -------------------------------------------------
+let str = 'abCdEfg'
+str.length // 길이
+str.toUpperCase() // str을 바꿔주진 않음 대문자로 바꾼 값을 반환
+str.toLowerCase()
+console.log(str)
+str.indexOf('a')
+// indexof를 통해 if문 사용시 주의 사항
+if(str.indexOf('a') > -1){ // 반환 값이 0이 되므로 if문이 실행되지 않을 수 있으므로 기준은 -1로
+    console.log('a가 포함된 문장입니다.')
+}
+str.slice(n,m) // n부터 m-1 인덱스 까지 반환, 값이 한개 있는경우 그 숫자부터 끝까지
+str.substring(n,m) // n과 m-1 인덱스의 문자열 반환 하며, 순서를 바꿔도 같은 방식으로 동작, 음수는 0으로 인식
+str.substr(n,m) // n인덱스부터 m개 반환
+str.trim() // 앞 뒤 공백 제거
+str.repeat(n) // 문자열을 n번 반복
+
+function hasCola(str){
+    if(str.indexOf('콜라') > -1){
+        console.log('금칙어 존재')
+    }
+    else{
+        console.log('통과')
+    }
+}
+// 배열 메소드 ---------------------------------------------------
+//arr.splice(n,m) -> n인덱스부터 m개를 지운다.
+//arr.splice(n,m,x1,x2) -> n인덱스부터 m개를 지운 후 그 자리에 x1과 x2를 집어넣는다.
+let arr3 = [1,2,3,4,5]
+let result2 = arr3.splice(1,2)
+console.log(arr3)
+console.log(result2)
+//arr.slice(n,m) -> n부터 m까지 반환 
