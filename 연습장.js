@@ -61,7 +61,7 @@ console.log(add(4,6));
 
 add = (num1, num2) => (
     num1 * num2
-)
+)// 중괄호를 일반괄호로 바꿔주므로써 return문을 생략 가능하다.
 console.log(add(4,6));
 
 add = (num1, num2) => num1 % num2
@@ -186,17 +186,20 @@ console.log(user)
 
 // 객체에서 사용할 수 있는 method
 // Object.assign() 객체 복제-> 파이썬에서의 deepcopy느낌
-const newUser = Object.assign({}, user)
+const newUser = Object.assign({}, user) // {} -> 초기 값, 여기dp user를 병합
 newUser.name = 'Tom'
 console.log(`user의 name은 ${user.name}`)
 console.log(`newUser의 name은 ${newUser.name}`)
+console.log(newUser)
 
 const newUser2 = Object.assign({gender : 'male'}, user)
 console.log(`newUser2의 name은 ${newUser2.name}`)
 console.log(newUser2)
 
 const newUser3 = Object.assign({name : 'maelong'}, user) // 덮어쓴다.
-console.log(`newUser3의 name은 ${newUser.name}`)
+console.log(`newUser3의 name은 ${newUser3.name}`)
+console.log(newUser3)
+
 
 const user11 = {
     name : 'Mike'
@@ -330,10 +333,103 @@ arr.forEach((name, index) => {// 반복문
 //arr.indexOf(n,m) // index m부터 n을 탐색
 //arr.lastIndexOf(n) // 마지막으로 n이 발견되는 index를 반환
 //arr.includes(n) // n을 포함하고 있는지를 확인 false나 true를 반환
-//arr.find(fn) // 첫번 째 true값을 반환하고 없는 경우 undefined를 반환
+//arr.find(fn) // 첫번 째 true값을 반환하고 없는 경우 undefined를 반환(하나만 찾는다.)
 //arr.findIndex(fn) // 
 let arr5 = [1,2,3,4,5]
 const result = arr.find((item) => {
     return item % 2 === 0 // 이 값이 트루일 때 멈춘다.
 })
+console.log(arr5[0] % 2 === 0)
+
+let userlist = [
+    {name: 'mike', age: 30},
+    {name: 'elice', age: 20},
+    {name: 'tom', age: 10},
+]
+
+const result3 = userlist.find((user) => {
+    if (user.age < 19){
+        return true
+    }
+    return false
+})
+
+console.log(result3)
+//arr.filter(fn) // fn조건을 만족하는 여러 개의 요소를 배열로 반환
+// const result3 = userlist.filter((user) => {
+//     if (user.age < 19){
+//         return true
+//     }
+//     return false
+// })
+// arr.reverse() // 배열을 역순으로 재정렬
+// arr.map(fn) // 함수를 받아 특정 기능을 시행하고 새로운 배열을 반환한다.
+let newuserlist = userlist.map((user,index) => {
+    return Object.assign({}, user, {
+        id: index + 1,
+        isAdult: user.age > 19,
+    })
+})
+// arr.join(' ')
+// arr.split(',')
+// arr.isArray() -> 배열인지 확인하기 위해서는 써야한다. 객체로 뜸 typeof 쓰면
+console.log(newuserlist)
+//arr.sort() -> a,b 두개의 원소를 파라미터로 입력받는 경우, 함수가 리턴하는 값이 0보다 작으면
+// a가 b보다 앞에 오도록 정렬, 클 경우 b가 앞에 오도록 정렬
+let arr6 = [13,5,4,2,3]
+arr6.sort()
+console.log(arr6)// 잘못나오는 이유는 문자열로 들어갔기 때문
+arr6.sort((a,b) => a-b)
+console.log(arr6)
+// user_symbol.sortBy()
+// reduce (누적 계산값, 현재값) = {return 계산값}
+let arr7 = [1,2,3,4,5]
+let result4 = 0
+arr7.forEach((num) => {
+    result4 += num
+})
+console.log(result4)
+result4 = arr7.reduce((prev,cur) => {
+    return prev + cur
+}, 0)// 초기 값 0
+
+result4 = userlist.reduce((prev, cur) => {
+    if (cur.age > 19){
+        prev.push(cur.name)
+    }
+    return prev
+}, [])
+
+// 구조 분해 할당 ---------------------------------------------------
+// a = [1,2,3]
+// let [u1,u2,u3]= a
+// console.log(u1,u2,u3)
+let a1 = 1;
+let b1 = 2;
+[a1, b1] = [b1, a1]
+console.log(a1,b1)
+
+// 나머지 매개변수, 전개 구문 ----------------------------------------
+function add2(...nums){// 나머지 매개변수 파이썬의 *arg, **kwargs와 비슷
+    let result = 0;
+    nums.forEach((num) => (result += num))
+    //nums.reduce((prev, cur) => prev + cur)
+    console.log(result)
+}
+add2(1,2,3)
+add2(1,2,3,4,5,6,7)
+
+function User6(name, age, ...skill){// 마지막에 있어야한다. 나머지 매개변수는
+    this.name = name;
+    this.age = age;
+    this.skill = skill;
+}
+
+const u1 = new User6('mike',3,'fejife',';232','fji')
+console.log(u1['skill'][0])
+
+// 전개 구문 : 배열 -> 쓰지 않는 경우 합칠 때 Object assign을 쓰자
+let array1 = [1,2,3]
+let array2 = [4,5,6]
+result4 = [0,...array1, ...array2,7,8,9]
 console.log(result)
