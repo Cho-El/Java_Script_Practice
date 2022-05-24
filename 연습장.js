@@ -409,6 +409,13 @@ let a1 = 1;
 let b1 = 2;
 [a1, b1] = [b1, a1]
 console.log(a1,b1)
+// a1 = {
+//     type : 'english',
+//     age: 15,
+// };
+// const {type, age} = a1;
+// console.log(type);
+// console.log(age);
 
 // 나머지 매개변수, 전개 구문 ----------------------------------------
 function add2(...nums){// 나머지 매개변수 파이썬의 *arg, **kwargs와 비슷
