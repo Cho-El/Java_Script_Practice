@@ -161,7 +161,7 @@ console.log(z4.constructor === Bmw)
 console.log(z4.constructor)
 console.log(Bmw)
 
-// 클로저의 활용을 통해 색깔 고정
+// 클로저의 활용을 통해 색깔 고정-------------------------------
 Bmw = function (color) {
     const c = color
     this.getColor = function() {
@@ -172,7 +172,7 @@ Bmw = function (color) {
 x5 = new Bmw('red')
 x5.getColor()
 
-// 클래스와 상속
+// 클래스와 상속-----------------------------------------------
 class User {
     constructor(name, age){ // 파이썬의 __init__과 비슷 -> 객체를 만들어주는 생성자 매소드
     // new를 통해 호출하면 자동으로 실행된다.
@@ -191,23 +191,59 @@ for(const p in tom){// for in 문에서 클래스의 메소드는 제외된다.
 
 // extends
 
-// class Car {
-//     constructor(color){
-//         this.color = color
-//         this.wheels = 4
-//     }
-//     drive(){
-//         console.log('drive..')
-//     }
-//     stop(){
-//         console.log('stop')
-//     }
-// }
+// 생성자 오버라이딩
+class Car { // {}
+    constructor(color){
+        this.color = color
+        this.wheels = 4
+    }
+    drive(){
+        console.log('drive..')
+    }
+    stop(){
+        console.log('stop')
+    }
+}
 
-// class Bmw1 extends Car {
-//     park(){
-//         console.log('park')
-//     }
-// }
+class Bmw1 extends Car { // extends로 이루어지는 자식 클래스는 빈 객체를 만들어주고, this를 할당하는 것을 건너 뛴다.
+    constructor(color){
+        super(color) // 부모 클래스의 constructor를 실행시켜준다, 인수도 받아야한다.
+        this.navigation = 1
+    }
+    park(){
+        console.log('park')
+    }
+}
 
-// z4 =  new Bmw1('blue')
+z4 =  new Bmw1('blue')
+
+// Promise --------------------------------------------------
+let pr = new Promise((resolve, reject) => {// resolve는 성공했을 때, reject는 실패했을 때 실행되는 함수
+// 어떤 일이 완료된 뒤 실행되는 함수를 callback 함수라고 한다.
+    setTimeout(() => {
+        // resolve('OK')
+        reject(new Error('error...'))
+    }, 2000)
+})
+// pr.then(
+//     function(result){ // 이행 되었을 때 실행
+//         console.log(result + '가지러 가자.')
+//     },
+//     function(err){ // 거부 되었을 때 실행
+//         console.log('다시 주문해주세요..')
+//     }
+// )
+// catch와 finally를 이용한 방식 이 방식이 더 가독성도 좋고, then함수가 실행되었을 때 에러가 나는 경우도 잡아준다.
+pr.then(
+    function(result){ // 이행 되었을 때 실행
+        console.log(result + '가지러 가자.')
+    }
+).catch(
+    function(err){ // 거부 되었을 때 실행
+        console.log('다시 주문해주세요..')
+    }
+).finally( // 이행 되든 안되든 무조건 실행하는 함수 로딩함수를 없앨 때 사용
+    function(){
+        console.log('----주문 끝 ----')
+    }
+)
