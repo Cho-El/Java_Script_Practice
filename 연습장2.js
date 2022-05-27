@@ -247,3 +247,16 @@ pr.then(
         console.log('----주문 끝 ----')
     }
 )
+
+const movingItem = {
+    type: 'tree',
+    direction: 0,
+    top: 0,
+    left: 0,
+}
+const movingItem2 = {
+    type: 'tree',
+    direction: 0,
+    top: 0,
+    left: 0,
+}
